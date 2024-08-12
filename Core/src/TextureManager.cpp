@@ -4,7 +4,9 @@
 #include <SDL_image.h>
 #include <filesystem>
 
-SDL_Texture* TextureManager::LoadTexture(const char* fileFullPath, SDL_Renderer* renderer)
+#include "Game.h"
+
+SDL_Texture* TextureManager::LoadTexture(const char* fileFullPath)
 {
     if(!std::filesystem::exists(fileFullPath))
     {
@@ -13,7 +15,13 @@ SDL_Texture* TextureManager::LoadTexture(const char* fileFullPath, SDL_Renderer*
     }
     
     SDL_Surface* tempSurface = IMG_Load(fileFullPath);
-    SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, tempSurface);
+    SDL_Texture* texture = SDL_CreateTextureFromSurface(Game::mpRenderer, tempSurface);
     SDL_FreeSurface(tempSurface);
     return texture;
 }
+
+void TextureManager::Draw(SDL_Texture* texture, SDL_Rect src, SDL_Rect dest)
+{
+    SDL_RenderCopy(Game::mpRenderer, texture, &src, &dest);
+}
+

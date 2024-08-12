@@ -10,6 +10,9 @@
 GameObject* player;
 GameObject* enemy;
 
+SDL_Renderer* Game::mpRenderer = nullptr;
+Map* map;
+
 Game::Game()
 {
     
@@ -56,8 +59,10 @@ void Game::init(
         mIsRunning = true;
     }
 
-    player = new GameObject("assets/finn.png",mpRenderer,0,0);
-    enemy = new GameObject("assets/enemy.png",mpRenderer,70,70);
+    player = new GameObject("assets/finn.png",0,0);
+    enemy = new GameObject("assets/enemy.png",70,70);
+
+    map = new Map();
 }
 
 void Game::handleEvents()
@@ -87,6 +92,7 @@ void Game::render()
     //First clear the renderer
     SDL_RenderClear(mpRenderer);
     //Than add stuff to the renderer
+    map->DrawMap();
     player->Render();
     enemy->Render();
     //Finally repaint the renderer with the new stuff

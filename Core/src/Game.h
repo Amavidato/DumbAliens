@@ -2,6 +2,7 @@
 #define GAME_H
 
 #include "SDL.h"
+#include "Map.h"
 
 class Game
 {
@@ -16,10 +17,12 @@ public:
     void clean();
 
     bool isRunning();
+
+    static SDL_Renderer* mpRenderer;
+
 private:
     int mUpdatesCounter;
     bool mIsRunning;
     SDL_Window* mpWindow;
-    SDL_Renderer* mpRenderer;
 };
 #endif
