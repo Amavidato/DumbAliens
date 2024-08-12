@@ -5,9 +5,10 @@
 
 #include "SDL_image.h"
 #include "TextureManager.h"
+#include "GameObject.h"
 
-SDL_Texture* playerTexture;
-SDL_Rect srcRect, destRect;
+GameObject* player;
+GameObject* enemy;
 
 Game::Game()
 {
@@ -49,13 +50,14 @@ void Game::init(
         mpRenderer = SDL_CreateRenderer(mpWindow, -1, 0);
         if(mpRenderer)
         {
-            SDL_SetRenderDrawColor(mpRenderer, 255,255,0,255);
+            SDL_SetRenderDrawColor(mpRenderer, 255,255,255,255);
             std::cout<<"Renderer Created!"<<std::endl;
         }
         mIsRunning = true;
     }
-    
-    playerTexture = TextureManager::LoadTexture("assets/finn.png", mpRenderer);
+
+    player = new GameObject("assets/finn.png",mpRenderer,0,0);
+    enemy = new GameObject("assets/enemy.png",mpRenderer,70,70);
 }
 
 void Game::handleEvents()
@@ -75,9 +77,8 @@ void Game::handleEvents()
 void Game::update()
 {
     mUpdatesCounter++;
-    destRect.h = 128;
-    destRect.w = 64;
-    destRect.x = mUpdatesCounter;
+    player->Update();
+    enemy->Update();
     std::cout << std::format("Frame number: {}",mUpdatesCounter)<<std::endl;
 }
 
@@ -86,11 +87,8 @@ void Game::render()
     //First clear the renderer
     SDL_RenderClear(mpRenderer);
     //Than add stuff to the renderer
-    SDL_RenderCopy(
-        mpRenderer,
-        playerTexture,
-        NULL,
-        &destRect);
+    player->Render();
+    enemy->Render();
     //Finally repaint the renderer with the new stuff
     SDL_RenderPresent(mpRenderer);
     
