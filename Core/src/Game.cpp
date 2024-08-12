@@ -4,9 +4,11 @@
 #include <iostream>
 
 #include "SDL_image.h"
+#include "TextureManager.h"
 
-SDL_Texture *playerTexture;
+SDL_Texture* playerTexture;
 SDL_Rect srcRect, destRect;
+
 Game::Game()
 {
     
@@ -52,9 +54,8 @@ void Game::init(
         }
         mIsRunning = true;
     }
-    SDL_Surface *tmpSurface = IMG_Load("assets/finn.png");
-    playerTexture = SDL_CreateTextureFromSurface(mpRenderer, tmpSurface);
-    SDL_FreeSurface(tmpSurface);
+    
+    playerTexture = TextureManager::LoadTexture("assets/finn.png", mpRenderer);
 }
 
 void Game::handleEvents()

@@ -19,7 +19,7 @@ public:
 private:
     int mUpdatesCounter;
     bool mIsRunning;
-    SDL_Window *mpWindow;
-    SDL_Renderer *mpRenderer;
+    SDL_Window* mpWindow;
+    SDL_Renderer* mpRenderer;
 };
 #endif
