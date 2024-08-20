@@ -158,6 +158,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\ECS\componentManager.cpp" />
+    <ClCompile Include="src\ECS\ecs.cpp" />
+    <ClCompile Include="src\ECS\entityManager.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\GameObject.cpp" />
     <ClCompile Include="src\main.cpp" />
@@ -165,6 +168,10 @@
     <ClCompile Include="src\TextureManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\ECS\componentArray.h" />
+    <ClInclude Include="src\ECS\componentManager.h" />
+    <ClInclude Include="src\ECS\entityManager.h" />
+    <ClInclude Include="src\ECS\ecsAliases.h" />
     <ClInclude Include="src\Game.h" />
     <ClInclude Include="src\GameObject.h" />
     <ClInclude Include="src\Map.h" />
