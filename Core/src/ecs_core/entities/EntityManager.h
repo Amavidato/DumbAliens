@@ -1,8 +1,8 @@
 ﻿#pragma once
-#ifndef ECS
-#define ECS
+#ifndef ENTITYMANAGER_H
+#define ENTITYMANAGER_H
 
-#include "ecsAliases.h"
+#include "../EcsAliases.h"
 #include <queue>
 #include <array>
 
@@ -18,10 +18,10 @@ public:
 
 private:
 	// Queue that stores unused entity IDs
-	std::queue<Entity> mAvailableEntities{};
+	std::queue<Entity> availableEntities_{};
 	// Array of signatures where the index corresponds to the entity ID
-	std::array<Signature, MAX_ENTITIES> mSignatures{};
+	std::array<Signature, MAX_ENTITIES> signatures_{};
 	// Total living entities - used to keep limits on how many entities can exist
-	uint32_t mLivingEntityCount{};
+	uint32_t livingEntityCount_ {};
 };
 #endif
