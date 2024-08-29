@@ -17,6 +17,11 @@ void EcsManager::DestroyEntity(Entity entity)
 	systemManager_->OnEntityDestroyed(entity);
 }
 
+void EcsManager::UpdateSystems(float deltaTime)
+{
+	systemManager_->UpdateSystems(deltaTime, this);
+}
+
 void EcsManager::Init()
 {
 	componentManager_ = std::make_unique<ComponentManager>();

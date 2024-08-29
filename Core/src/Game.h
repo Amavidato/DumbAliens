@@ -1,8 +1,10 @@
 ﻿#ifndef GAME_H
 #define GAME_H
 
-#include "SDL.h"
-#include "Map.h"
+#include <SDL_events.h>
+#include <SDL_render.h>
+
+#include "ecs_core/EcsManager.h"
 
 class Game
 {
@@ -11,18 +13,16 @@ public:
     ~Game();
     void init(const char* title, int xpos, int ypos, int width, int height, bool fullscreen);
 
-    void handleEvents();
-    void update();
-    void render();
+    void update(float deltaTime);
     void clean();
 
-    bool isRunning();
-
-    static SDL_Renderer* mpRenderer;
+	static std::unique_ptr<SDL_Renderer, decltype((SDL_DestroyRenderer))> renderer;
+	static std::unique_ptr<SDL_Window, decltype((SDL_DestroyWindow))> window;
+	static bool IS_RUNNING;
+	static SDL_Event event;
 
 private:
     int mUpdatesCounter;
-    bool mIsRunning;
-    SDL_Window* mpWindow;
+    std::unique_ptr<EcsManager> pEcsManager_;
 };
 #endif

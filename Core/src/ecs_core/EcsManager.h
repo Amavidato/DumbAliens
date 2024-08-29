@@ -14,6 +14,7 @@ public:
 	EcsManager();
 	Entity CreateEntity();
 	void DestroyEntity(Entity entity);
+	void UpdateSystems(float deltaTime);
 	
 	template<IsAComponentStruct T>
 	void AddComponent(Entity entity, T component)
@@ -41,10 +42,10 @@ public:
 		return componentManager_->GetComponentType<T>();
 	}
 
-	template<IsASystem T>
-	void RegisterSystem()
+	template<DerivedFromAllowedClasses T>
+	void RegisterSystem(std::shared_ptr<T> aSystem)
 	{
-		systemManager_->RegisterSystem<T>();
+		systemManager_->RegisterSystem(aSystem);
 	}
 
 	template<IsAComponentStruct... Args>

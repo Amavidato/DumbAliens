@@ -1,27 +1,34 @@
 ﻿#include "TextureManager.h"
-
+#include "../Game.h"
 #include <iostream>
 #include <SDL_image.h>
 #include <filesystem>
 
-#include "Game.h"
+std::unordered_map<const char*, SDL_Texture*> TextureManager::texturesCache_ {};
 
 SDL_Texture* TextureManager::LoadTexture(const char* fileFullPath)
 {
-    if(!std::filesystem::exists(fileFullPath))
+    if(!texturesCache_.contains(fileFullPath))
     {
-        std::cout << std::format("File does't exists at path:{}!",fileFullPath) << std::endl;
-        return nullptr;
+    	if(!std::filesystem::exists(fileFullPath))
+    	{
+    		std::cout << std::format("File does't exists at path:{}!",fileFullPath) << std::endl;
+    		return nullptr;
+    	}
+	    SDL_Surface* tempSurface = IMG_Load(fileFullPath);
+	    SDL_Texture* texture = SDL_CreateTextureFromSurface(Game::renderer.get(), tempSurface);
+	    SDL_FreeSurface(tempSurface);
+    	texturesCache_.insert({fileFullPath,texture});
     }
-    
-    SDL_Surface* tempSurface = IMG_Load(fileFullPath);
-    SDL_Texture* texture = SDL_CreateTextureFromSurface(Game::mpRenderer, tempSurface);
-    SDL_FreeSurface(tempSurface);
-    return texture;
+    return texturesCache_[fileFullPath];
 }
 
-void TextureManager::Draw(SDL_Texture* texture, SDL_Rect src, SDL_Rect dest)
+void TextureManager::Draw(SDL_Texture* texture, SDL_FRect dest)
 {
-    SDL_RenderCopy(Game::mpRenderer, texture, &src, &dest);
+	SDL_RenderCopyF(Game::renderer.get(), texture, NULL, &dest);
 }
 
+void TextureManager::Draw(SDL_Texture* texture, SDL_Rect src, SDL_FRect dest)
+{
+    SDL_RenderCopyF(Game::renderer.get(), texture, &src, &dest);
+}
