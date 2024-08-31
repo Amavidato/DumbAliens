@@ -51,6 +51,7 @@ void Game::Init(
 			width,
 			height,
 			fullscreen);
+	InitEcsSystems();
 	InitPlayer();
 	InitEnemies();
 	//InitMap();
