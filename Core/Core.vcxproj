@@ -388,6 +388,7 @@
     </ClCompile>
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\my_ecs_stuff\CollisionSystem.cpp" />
+    <ClCompile Include="src\my_ecs_stuff\EnemyMovementSystem.cpp" />
     <ClCompile Include="src\my_ecs_stuff\InputHandlerSytem.cpp" />
     <ClCompile Include="src\my_ecs_stuff\MovementSystem.cpp" />
     <ClCompile Include="src\my_ecs_stuff\PlayerInputSystem.cpp" />
@@ -409,6 +410,7 @@
     <ClInclude Include="src\graphics\TextureManager.h" />
     <ClInclude Include="src\my_ecs_stuff\CollisionSystem.h" />
     <ClInclude Include="src\my_ecs_stuff\Components.h" />
+    <ClInclude Include="src\my_ecs_stuff\EnemyMovementSystem.h" />
     <ClInclude Include="src\my_ecs_stuff\InputHandlerSytem.h" />
     <ClInclude Include="src\my_ecs_stuff\MovementSystem.h" />
     <ClInclude Include="src\my_ecs_stuff\PlayerInputSystem.h" />

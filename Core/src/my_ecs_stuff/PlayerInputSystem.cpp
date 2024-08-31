@@ -8,7 +8,7 @@
 
 void PlayerInputSystem::OnCreate()
 {
-	signature = EcsManager::CreateSignature<Direction2D>();
+	signature = EcsManager::CreateSignature<Direction2D, PlayerTag>();
 }
 
 void PlayerInputSystem::OnUpdate(float deltaTime, EcsManager* ecsManager)

@@ -40,4 +40,8 @@ struct Collider2D : AComponent
 {
 	int width, height;
 };
+
+struct PlayerTag : AComponent{};
+struct EnemyTag : AComponent{};
+
 #endif // COMPONENTS_H

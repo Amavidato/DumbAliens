@@ -20,7 +20,13 @@ public:
 	static std::unique_ptr<SDL_Window, decltype((SDL_DestroyWindow))> window;
 	static bool IS_RUNNING;
 	static SDL_Event event;
-
+	static constexpr int numOfEnemiesPerRow = 10;
+	static constexpr int numOfEnemiesPerColumn = 5;
+	static constexpr int enemiesMaxHorizontalDistance = 200;
+	static constexpr int enemiesMaxVerticalDistance = 100;
+	static constexpr int enemyWidth = 24;
+	static constexpr int enemyHeight = 24;
+	static constexpr int NumEnemies () { return numOfEnemiesPerRow * numOfEnemiesPerColumn; }
 private:
     int mUpdatesCounter;
     std::unique_ptr<EcsManager> pEcsManager_;

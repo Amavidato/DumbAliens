@@ -7,6 +7,7 @@
 #include "graphics/TextureManager.h"
 #include "my_ecs_stuff/CollisionSystem.h"
 #include "my_ecs_stuff/Components.h"
+#include "my_ecs_stuff/EnemyMovementSystem.h"
 #include "my_ecs_stuff/InputHandlerSytem.h"
 #include "my_ecs_stuff/MovementSystem.h"
 #include "my_ecs_stuff/PlayerInputSystem.h"
@@ -15,9 +16,8 @@
 #include "my_ecs_stuff/RenderMapSystem.h"
 
 std::unique_ptr<Entity> player;
-std::unique_ptr<Entity> enemy;
+std::unique_ptr<Entity> enemies[Game::NumEnemies()];
 std::unique_ptr<Entity> map;
-
 std::unique_ptr<SDL_Renderer, decltype((SDL_DestroyRenderer))> Game::renderer {nullptr,SDL_DestroyRenderer};
 std::unique_ptr<SDL_Window, decltype((SDL_DestroyWindow))> Game::window {nullptr,SDL_DestroyWindow};
 bool Game::IS_RUNNING = false;
@@ -34,6 +34,7 @@ Game::Game()
 	pEcsManager_->RegisterSystem(std::make_shared<PlayerInputSystem>());
 	pEcsManager_->RegisterSystem(std::make_shared<CollisionSystem>());
 	pEcsManager_->RegisterSystem(std::make_shared<RenderingCollidersSystem>());
+	pEcsManager_->RegisterSystem(std::make_shared<EnemyMovementSystem>());
 }
 
 Game::~Game()
@@ -80,9 +81,31 @@ void Game::init(
     }
 
 	player = std::make_unique<Entity>(pEcsManager_->CreateEntity());
-	enemy = std::make_unique<Entity>(pEcsManager_->CreateEntity());
+	//50 num of enemies
+	for(int i = 0; i < NumEnemies(); i++)
+	{
+		enemies[i] = std::make_unique<Entity>(pEcsManager_->CreateEntity());
+		pEcsManager_->AddComponent(*enemies[i], Position2D{
+			.x = static_cast<float>((i % numOfEnemiesPerRow) * enemyWidth),   //10 num of enemies per row
+			.y = static_cast<float>((i / numOfEnemiesPerRow) * enemyHeight)	//10 num of enemies per row
+		});
+		pEcsManager_->AddComponent(*enemies[i], Collider2D{
+			.width = enemyWidth,
+			.height = enemyHeight
+		});
+		pEcsManager_->AddComponent(*enemies[i], Speed{{},50});
+		pEcsManager_->AddComponent(*enemies[i], RendererData{
+			.texturePath = "assets/enemy.png",
+			.width = enemyWidth,
+			.height = enemyHeight
+		});
+		pEcsManager_->AddComponent(*enemies[i], Direction2D{{},1,0});
+		pEcsManager_->AddComponent(*enemies[i], EnemyTag{});
+	}
+	
 	map = std::make_unique<Entity>(pEcsManager_->CreateEntity());
 
+	pEcsManager_->AddComponent(*player, PlayerTag{});
 	pEcsManager_->AddComponent(*player, Position2D{
 		.x = 0,
 		.y = 0
@@ -91,31 +114,17 @@ void Game::init(
 		.width = 50,
 		.height = 80
 	});
-	pEcsManager_->AddComponent(*enemy, Position2D{
-		.x = 70,
-		.y = 70
-	});
-	pEcsManager_->AddComponent(*enemy, Collider2D{
-			.width = 50,
-			.height = 80
-		});
+	
 	
 	pEcsManager_->AddComponent(*player, Speed{{},50});
 	pEcsManager_->AddComponent(*player, Direction2D{{},0,0});
-	pEcsManager_->AddComponent(*enemy, Speed{{},50});
-
 	pEcsManager_->AddComponent(*player,
 		RendererData{
 			.texturePath = "assets/player.png",
 			.width = 50,
 			.height = 80
 		});
-	pEcsManager_->AddComponent(*enemy,
-		RendererData{
-			.texturePath = "assets/enemy.png",
-			.width = 50,
-			.height = 80
-		});
+	
  	
     pEcsManager_->AddComponent(*map,
     	TerrainTiles{

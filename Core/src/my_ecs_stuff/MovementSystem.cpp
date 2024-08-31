@@ -4,7 +4,7 @@
 #include "../ecs_core/EcsManager.h"
 void MovementSystem::OnCreate()
 {
-	signature = EcsManager::CreateSignature<Position2D, Speed, Direction2D>();
+	signature = EcsManager::CreateSignature<Position2D, Speed, Direction2D, PlayerTag>();
 }
 
 void MovementSystem::OnUpdate(float deltaTime, EcsManager* ecsManager)
