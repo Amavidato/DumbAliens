@@ -21,12 +21,12 @@ void PlayerInputSystem::OnUpdate(float deltaTime, EcsManager* ecsManager)
 		{
 			switch (Game::event.key.keysym.sym)
 			{
-			case SDLK_UP:
-				direction.y = -1;
-				break;
-			case SDLK_DOWN:
-				direction.y = 1;
-				break;
+			// case SDLK_UP:
+			// 	direction.y = -1;
+			// 	break;
+			// case SDLK_DOWN:
+			// 	direction.y = 1;
+			// 	break;
 			case SDLK_LEFT:
 				direction.x = -1;
 				break;
@@ -42,12 +42,12 @@ void PlayerInputSystem::OnUpdate(float deltaTime, EcsManager* ecsManager)
 		{
 			switch (Game::event.key.keysym.sym)
 			{
-			case SDLK_UP:
-				direction.y = 0;
-				break;
-			case SDLK_DOWN:
-				direction.y = 0;
-				break;
+			// case SDLK_UP:
+			// 	direction.y = 0;
+			// 	break;
+			// case SDLK_DOWN:
+			// 	direction.y = 0;
+			// 	break;
 			case SDLK_LEFT:
 				direction.x = 0;
 				break;

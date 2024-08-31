@@ -417,6 +417,9 @@
     <ClInclude Include="src\my_ecs_stuff\RendererSystem.h" />
     <ClInclude Include="src\my_ecs_stuff\RenderingCollidersSystem.h" />
     <ClInclude Include="src\my_ecs_stuff\RenderMapSystem.h" />
+    <ClInclude Include="src\settings\EnemySettings.h" />
+    <ClInclude Include="src\settings\GameSettings.h" />
+    <ClInclude Include="src\settings\PlayerSettings.h" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\enemy.png" />

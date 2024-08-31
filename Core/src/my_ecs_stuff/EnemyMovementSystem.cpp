@@ -3,6 +3,7 @@
 #include "Components.h"
 #include "../ecs_core/EcsManager.h"
 #include "../Game.h"
+#include "../settings/EnemySettings.h"
 
 void EnemyMovementSystem::OnCreate()
 {
@@ -20,10 +21,10 @@ void EnemyMovementSystem::OnUpdate(float deltaTime, EcsManager* ecsManager)
 	{
 		movement.first = static_cast<float>(direction.x * speed.value) * deltaTime;
 		if(direction.x > 0 &&
-			pos.x < Game::enemiesMaxHorizontalDistance &&
-			pos.x + movement.first > Game::enemiesMaxHorizontalDistance)
+			pos.x < EnemySettings::enemiesMaxHorizontalDistance &&
+			pos.x + movement.first > EnemySettings::enemiesMaxHorizontalDistance)
 		{
-			movement.first = Game::enemiesMaxHorizontalDistance - pos.x;
+			movement.first = EnemySettings::enemiesMaxHorizontalDistance - pos.x;
 			direction.x = 0;
 			direction.y = 1;
 		}
@@ -38,9 +39,9 @@ void EnemyMovementSystem::OnUpdate(float deltaTime, EcsManager* ecsManager)
 	}
 	else if (direction.y != 0)
 	{
-		movement.second = static_cast<float>(direction.y * Game::enemyHeight);
-		if(pos.y < Game::enemiesMaxVerticalDistance &&
-			pos.y + movement.second > Game::enemiesMaxVerticalDistance)
+		movement.second = static_cast<float>(direction.y * EnemySettings::enemyHeight);
+		if(pos.y < EnemySettings::enemiesMaxVerticalDistance &&
+			pos.y + movement.second > EnemySettings::enemiesMaxVerticalDistance)
 		{
 			SystemManager::STOP_SYSTEMS_EXECUTION = true;
 			return;

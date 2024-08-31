@@ -11,7 +11,7 @@ Game *game = nullptr;
 int main(int argc, char* argv[])
 {
     game = new Game();
-    game->init(
+    game->Init(
         "This is my GameEngine",
         SDL_WINDOWPOS_CENTERED,
         SDL_WINDOWPOS_CENTERED,
@@ -28,7 +28,7 @@ int main(int argc, char* argv[])
         Uint32 frameStartTime = SDL_GetTicks();
         Uint32 frameDeltaTime = SDL_GetTicks() - lastFrameTime;
     	lastFrameTime = frameStartTime;
-        game->update(static_cast<float>(frameDeltaTime)/1000);
+        game->Update(static_cast<float>(frameDeltaTime)/1000);
     	
         // TODO CROPPING FPS...IMPLEMENT THIS AND REFACTOR WHOLE GAME LOOP
         /*
@@ -39,6 +39,6 @@ int main(int argc, char* argv[])
         }
         */
     }
-    game->clean();
+    game->Clean();
     return 0;
 }

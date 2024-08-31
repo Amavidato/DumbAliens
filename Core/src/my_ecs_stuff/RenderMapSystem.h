@@ -7,7 +7,6 @@
 class RenderMapSystem : public RenderingSystem
 {
 public:
-	~RenderMapSystem() = default;
 	void OnCreate() override;
 	void OnUpdate(float deltaTime, EcsManager* ecsManager) override;
 };

@@ -7,8 +7,6 @@
 class MovementSystem : public LogicSystem
 {
 public:
-	MovementSystem() = default;
-	~MovementSystem() override = default;
 	void OnCreate() override;
 	void OnUpdate(float deltaTime, EcsManager* ecsManager) override;
 };

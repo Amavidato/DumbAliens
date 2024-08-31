@@ -8,7 +8,6 @@
 class RendererSystem : public RenderingSystem
 {
 public:
-	~RendererSystem() override = default;
 	void OnCreate() override;
 	void OnUpdate(float deltaTime, EcsManager* ecsManager) override;
 };

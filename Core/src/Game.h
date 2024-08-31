@@ -11,24 +11,23 @@ class Game
 public:
     Game();
     ~Game();
-    void init(const char* title, int xpos, int ypos, int width, int height, bool fullscreen);
+    void Init(const char* title, int xpos, int ypos, int width, int height, bool fullscreen);
 
-    void update(float deltaTime);
-    void clean();
+    void Update(float deltaTime);
+    void Clean();
 
 	static std::unique_ptr<SDL_Renderer, decltype((SDL_DestroyRenderer))> renderer;
 	static std::unique_ptr<SDL_Window, decltype((SDL_DestroyWindow))> window;
 	static bool IS_RUNNING;
 	static SDL_Event event;
-	static constexpr int numOfEnemiesPerRow = 10;
-	static constexpr int numOfEnemiesPerColumn = 5;
-	static constexpr int enemiesMaxHorizontalDistance = 200;
-	static constexpr int enemiesMaxVerticalDistance = 100;
-	static constexpr int enemyWidth = 24;
-	static constexpr int enemyHeight = 24;
-	static constexpr int NumEnemies () { return numOfEnemiesPerRow * numOfEnemiesPerColumn; }
+	
 private:
     int mUpdatesCounter;
     std::unique_ptr<EcsManager> pEcsManager_;
+	void InitWindow(const char* title, int xpos, int ypos, int width, int height, bool fullscreen);
+	void InitEcsSystems();
+	void InitPlayer();
+	void InitEnemies();
+	//void InitMap();
 };
 #endif
