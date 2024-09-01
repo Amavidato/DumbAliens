@@ -5,6 +5,7 @@
 #include "Components.h"
 #include "../ecs_core/EcsManager.h"
 #include "../Game.h"
+#include "../settings/PlayerSettings.h"
 
 void PlayerInputSystem::OnCreate()
 {
@@ -21,18 +22,15 @@ void PlayerInputSystem::OnUpdate(float deltaTime, EcsManager* ecsManager)
 		{
 			switch (Game::event.key.keysym.sym)
 			{
-			// case SDLK_UP:
-			// 	direction.y = -1;
-			// 	break;
-			// case SDLK_DOWN:
-			// 	direction.y = 1;
-			// 	break;
 			case SDLK_LEFT:
 				direction.x = -1;
 				break;
 			case SDLK_RIGHT:
 				direction.x = 1;
 				break;
+			case SDLK_SPACE:
+			 	Shoot(ecsManager, entity);
+			 	break;
 			default:
 				break;
 			}
@@ -42,12 +40,6 @@ void PlayerInputSystem::OnUpdate(float deltaTime, EcsManager* ecsManager)
 		{
 			switch (Game::event.key.keysym.sym)
 			{
-			// case SDLK_UP:
-			// 	direction.y = 0;
-			// 	break;
-			// case SDLK_DOWN:
-			// 	direction.y = 0;
-			// 	break;
 			case SDLK_LEFT:
 				direction.x = 0;
 				break;
@@ -59,4 +51,18 @@ void PlayerInputSystem::OnUpdate(float deltaTime, EcsManager* ecsManager)
 			}
 		}
 	}
+}
+
+void PlayerInputSystem::Shoot(EcsManager* ecsManager, Entity playerEntity)
+{
+	auto bullet = ecsManager->CreateEntity();
+	ecsManager->AddComponent<BulletTag>(bullet);
+	auto position = ecsManager->GetComponent<Position2D>(playerEntity);
+	ecsManager->AddComponent<Position2D>(bullet, position);
+	ecsManager->AddComponent<Direction2D>(bullet, Direction2D{.x = 0,.y = -1});
+	ecsManager->AddComponent<RendererData>(bullet, RendererData{
+		.texturePath = PlayerSettings::BulletSettings::bulletTexturePath,
+		.width = PlayerSettings::BulletSettings::bulletWidth,
+		.height = PlayerSettings::BulletSettings::bulletHeight
+	});
 }

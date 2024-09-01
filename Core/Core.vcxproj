@@ -387,6 +387,7 @@
       <LinkCompiled>true</LinkCompiled>
     </ClCompile>
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\my_ecs_stuff\BulletMovementSystem.cpp" />
     <ClCompile Include="src\my_ecs_stuff\CollisionSystem.cpp" />
     <ClCompile Include="src\my_ecs_stuff\EnemyMovementSystem.cpp" />
     <ClCompile Include="src\my_ecs_stuff\InputHandlerSytem.cpp" />
@@ -408,6 +409,7 @@
     <ClInclude Include="src\ecs_core\systems\SystemManager.h" />
     <ClInclude Include="src\Game.h" />
     <ClInclude Include="src\graphics\TextureManager.h" />
+    <ClInclude Include="src\my_ecs_stuff\BulletMovementSystem.h" />
     <ClInclude Include="src\my_ecs_stuff\CollisionSystem.h" />
     <ClInclude Include="src\my_ecs_stuff\Components.h" />
     <ClInclude Include="src\my_ecs_stuff\EnemyMovementSystem.h" />
@@ -427,6 +429,7 @@
     <Content Include="assets\map\dirt.png" />
     <Content Include="assets\map\grass.png" />
     <Content Include="assets\map\water.png" />
+    <Content Include="assets\player_white.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

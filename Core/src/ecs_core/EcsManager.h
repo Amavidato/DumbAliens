@@ -8,6 +8,10 @@
 #include "systems/SystemManager.h"
 #include <memory>
 
+template <typename T>
+concept IsAComponentTag = IsAComponentStruct<T> && std::is_empty_v<T>;
+
+
 class EcsManager
 {
 public:
@@ -15,11 +19,18 @@ public:
 	Entity CreateEntity();
 	void DestroyEntity(Entity entity);
 	void UpdateSystems(float deltaTime);
-	
+
 	template<IsAComponentStruct T>
 	void AddComponent(Entity entity, T component)
 	{
 		componentManager_->AddComponent<T>(entity, component);
+		ChangeEntitySignature<T>(entity, true);
+	}
+	
+	template<IsAComponentTag T>
+	void AddComponent(Entity entity)
+	{
+		componentManager_->AddComponent<T>(entity, T());
 		ChangeEntitySignature<T>(entity, true);
 	}
 

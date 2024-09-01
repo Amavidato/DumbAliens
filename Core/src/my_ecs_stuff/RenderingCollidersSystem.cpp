@@ -26,5 +26,4 @@ void RenderingCollidersSystem::OnUpdate(float deltaTime, EcsManager* ecsManager)
 		SDL_RenderDrawRectF(Game::renderer.get(), &rect);
 	}
 	SDL_SetRenderDrawColor(Game::renderer.get(), 0,0,0,255);
-
 }

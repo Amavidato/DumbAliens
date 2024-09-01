@@ -5,6 +5,7 @@
 
 #include "SDL_image.h"
 #include "graphics/TextureManager.h"
+#include "my_ecs_stuff/BulletMovementSystem.h"
 #include "my_ecs_stuff/CollisionSystem.h"
 #include "my_ecs_stuff/Components.h"
 #include "my_ecs_stuff/EnemyMovementSystem.h"
@@ -103,7 +104,7 @@ void Game::InitWindow(const char* title, int xpos, int ypos, int width, int heig
 		renderer.reset(SDL_CreateRenderer(window.get(), -1, 0));
 		if(renderer)
 		{
-			SDL_SetRenderDrawColor(renderer.get(), 255,255,255,255);
+			SDL_SetRenderDrawColor(renderer.get(), 0,0,0,255);
 			std::cout<<"Renderer Created!"<<std::endl;
 		}
 		IS_RUNNING = true;
@@ -121,12 +122,13 @@ void Game::InitEcsSystems()
 	pEcsManager_->RegisterSystem(std::make_shared<CollisionSystem>());
 	pEcsManager_->RegisterSystem(std::make_shared<RenderingCollidersSystem>());
 	pEcsManager_->RegisterSystem(std::make_shared<EnemyMovementSystem>());
+	pEcsManager_->RegisterSystem(std::make_shared<BulletMovementSystem>());
 }
 
 void Game::InitPlayer()
 {
 	player = std::make_unique<Entity>(pEcsManager_->CreateEntity());
-	pEcsManager_->AddComponent(*player, PlayerTag{});
+	pEcsManager_->AddComponent<PlayerTag>(*player);
 	pEcsManager_->AddComponent(*player, Position2D{
 		.x = 300 - PlayerSettings::playerWidth,
 		.y = 600 - PlayerSettings::playerHeight
@@ -165,7 +167,7 @@ void Game::InitEnemies()
 			.height = EnemySettings::enemyHeight
 		});
 		pEcsManager_->AddComponent(*enemies[i], Direction2D{{},1,0});
-		pEcsManager_->AddComponent(*enemies[i], EnemyTag{});
+		pEcsManager_->AddComponent<EnemyTag>(*enemies[i]);
 	}
 }
 

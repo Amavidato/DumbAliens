@@ -11,8 +11,8 @@ public:
 	static constexpr int numOfEnemiesPerColumn {5};
 	static constexpr int enemiesMaxHorizontalDistance {200};
 	static constexpr int enemiesMaxVerticalDistance {100};
-	static constexpr int enemyWidth {24};
-	static constexpr int enemyHeight {24};
+	static constexpr int enemyWidth {32};
+	static constexpr int enemyHeight {32};
 	static constexpr int NumEnemies () { return numOfEnemiesPerRow * numOfEnemiesPerColumn; }
 };
 #endif // ENEMYSETTINGS_H

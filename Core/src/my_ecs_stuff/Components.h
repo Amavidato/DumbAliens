@@ -43,5 +43,6 @@ struct Collider2D : AComponent
 
 struct PlayerTag : AComponent{};
 struct EnemyTag : AComponent{};
+struct BulletTag : AComponent{};
 
 #endif // COMPONENTS_H
