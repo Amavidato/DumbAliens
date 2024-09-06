@@ -1,13 +1,13 @@
 ﻿#pragma once
-#ifndef COLLISIONSYSTEM_H
-#define COLLISIONSYSTEM_H
+#ifndef BULLETCOLLISIONSYSTEM_H
+#define BULLETCOLLISIONSYSTEM_H
 #include "../ecs_core/systems/SpecializedSystems.h"
 
-class CollisionSystem : public LogicSystem
+class BulletCollisionSystem : public LogicSystem
 {
 public:
 	void OnCreate() override;
 	void OnUpdate(float deltaTime, EcsManager* ecsManager) override;
 };
 
-#endif // COLLISIONSYSTEM_H
+#endif // BULLETCOLLISIONSYSTEM_H

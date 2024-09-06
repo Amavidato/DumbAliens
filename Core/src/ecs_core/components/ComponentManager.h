@@ -11,6 +11,11 @@
 class ComponentManager
 {
 public:
+	template <IsAComponentStruct T> bool HasComponent(Entity entity)
+	{
+		return GetComponentArray<T>()->HasComponent(entity);
+	}
+	
 	template <IsAComponentStruct T> void AddComponent(Entity entity, T component)
 	{
 		// Add a component to the array for an entity
@@ -45,7 +50,12 @@ public:
 		(result.set(GetComponentType<Args>()),...);
 		return result; 
 	}
-	
+
+	template <IsAComponentStruct T>
+	std::unordered_set<Entity> GetEntitiesWithComponent()
+	{
+		return GetComponentArray<T>()->GetEntities();
+	}
 private:
 	// Map from component type to the corresponding component array
 	std::unordered_map<ComponentType, std::shared_ptr<AComponentArray>> componentArrays_{};

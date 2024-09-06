@@ -15,6 +15,7 @@
 #include "my_ecs_stuff/RendererSystem.h"
 #include "my_ecs_stuff/RenderingCollidersSystem.h"
 #include "my_ecs_stuff/RenderMapSystem.h"
+#include "my_ecs_stuff/BulletCollisionSystem.h"
 #include "settings/EnemySettings.h"
 #include "settings/GameSettings.h"
 #include "settings/PlayerSettings.h"
@@ -123,6 +124,7 @@ void Game::InitEcsSystems()
 	pEcsManager_->RegisterSystem(std::make_shared<RenderingCollidersSystem>());
 	pEcsManager_->RegisterSystem(std::make_shared<EnemyMovementSystem>());
 	pEcsManager_->RegisterSystem(std::make_shared<BulletMovementSystem>());
+	pEcsManager_->RegisterSystem(std::make_shared<BulletCollisionSystem>());
 }
 
 void Game::InitPlayer()
@@ -151,10 +153,15 @@ void Game::InitEnemies()
 {
 	for(int i = 0; i < EnemySettings::NumEnemies(); i++)
 	{
+		float startingPosX = static_cast<float>((i % EnemySettings::numOfEnemiesPerRow) * EnemySettings::enemyWidth + (i % EnemySettings::numOfEnemiesPerRow) * EnemySettings::enemyPadding);
 		enemies[i] = std::make_unique<Entity>(pEcsManager_->CreateEntity());
 		pEcsManager_->AddComponent(*enemies[i], Position2D{
-			.x = static_cast<float>((i % EnemySettings::numOfEnemiesPerRow) * EnemySettings::enemyWidth),
-			.y = static_cast<float>((i / EnemySettings::numOfEnemiesPerRow) * EnemySettings::enemyHeight)
+			.x = startingPosX,
+			.y = static_cast<float>((i / EnemySettings::numOfEnemiesPerRow) * EnemySettings::enemyHeight + (i / EnemySettings::numOfEnemiesPerRow) * EnemySettings::enemyPadding)
+		});
+
+		pEcsManager_->AddComponent(*enemies[i], StartingPositionX{
+			.value = startingPosX
 		});
 		pEcsManager_->AddComponent(*enemies[i], Collider2D{
 			.width = EnemySettings::enemyWidth,
@@ -168,6 +175,10 @@ void Game::InitEnemies()
 		});
 		pEcsManager_->AddComponent(*enemies[i], Direction2D{{},1,0});
 		pEcsManager_->AddComponent<EnemyTag>(*enemies[i]);
+		pEcsManager_->AddComponent(*enemies[i], DistanceTravelled{
+			.horizontal = 0,
+			.vertical = 0
+		});
 	}
 }
 

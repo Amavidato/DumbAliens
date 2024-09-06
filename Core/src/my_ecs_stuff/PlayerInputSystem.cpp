@@ -65,4 +65,8 @@ void PlayerInputSystem::Shoot(EcsManager* ecsManager, Entity playerEntity)
 		.width = PlayerSettings::BulletSettings::bulletWidth,
 		.height = PlayerSettings::BulletSettings::bulletHeight
 	});
+	ecsManager->AddComponent<Collider2D>(bullet, Collider2D{
+		.width = PlayerSettings::BulletSettings::bulletWidth,
+		.height = PlayerSettings::BulletSettings::bulletHeight
+	});
 }

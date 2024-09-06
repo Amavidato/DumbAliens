@@ -5,7 +5,6 @@ bool SystemManager::STOP_SYSTEMS_EXECUTION = false;
 
 void SystemManager::UpdateSystems(float deltaTime, EcsManager* ecsManager)
 {
-	std::shared_ptr<ASystem> tempSystem;
 	for (auto system : systemsSet_)
 	{
 		if(STOP_SYSTEMS_EXECUTION)

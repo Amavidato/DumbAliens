@@ -6,6 +6,8 @@
 #include "../EcsAliases.h"
 #include <cassert>
 #include <unordered_map>
+#include <ranges>
+#include <unordered_set>
 
 // An abstraction is required so that the ComponentManager (seen later)
 // can tell a generic ComponentArray that an entity has been destroyed
@@ -26,6 +28,12 @@ template <IsAComponentStruct T>
 class ComponentArray : public AComponentArray
 {
 public:
+	
+	bool HasComponent(Entity entity) const
+	{
+		return entityToIndexMap_.contains(entity);
+	}
+	
 	void InsertData(Entity entity, T component)
 	{
 		assert(!entityToIndexMap_.contains(entity)
@@ -71,6 +79,14 @@ public:
 			RemoveData(entity);
 		}
 	}
+
+	std::unordered_set<Entity> GetEntities()
+	{
+		auto keys = std::views::keys(entityToIndexMap_);
+		std::unordered_set<Entity> entities{ keys.begin(), keys.end() };
+		return entities;
+	}
+	
 private:
 	// The packed array of components of type T (one for each entity)
 	std::array<T,MAX_ENTITIES> componentArray_;

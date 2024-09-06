@@ -11,7 +11,6 @@
 template <typename T>
 concept IsAComponentTag = IsAComponentStruct<T> && std::is_empty_v<T>;
 
-
 class EcsManager
 {
 public:
@@ -19,7 +18,13 @@ public:
 	Entity CreateEntity();
 	void DestroyEntity(Entity entity);
 	void UpdateSystems(float deltaTime);
-
+	
+	template<IsAComponentStruct T>
+	bool HasComponent(Entity entity)
+	{
+		return componentManager_->HasComponent<T>(entity);
+	}
+	
 	template<IsAComponentStruct T>
 	void AddComponent(Entity entity, T component)
 	{
@@ -64,7 +69,13 @@ public:
 	{
 		return ComponentManager::CreateSignature<Args...>();
 	}
-	
+
+	template<IsAComponentStruct... Args>
+	std::unordered_set<Entity> GetEntitiesWithAny()
+	{
+		return ((GetEntitiesWithComponentType<Args>()),...);
+	}
+
 private:
 	std::unique_ptr<ComponentManager> componentManager_;
 	std::unique_ptr<EntityManager> entityManager_;
@@ -79,6 +90,11 @@ private:
 		signature.set(componentManager_->GetComponentType<T>(),addedNewComponent);
 		entityManager_->SetSignature(entity, signature);
 		systemManager_->OnEntitySignatureChanged(entity, signature);
+	}
+
+	template <IsAComponentStruct T>
+	std::unordered_set<Entity> GetEntitiesWithComponentType() {
+		return componentManager_->GetEntitiesWithComponent<T>();
 	}
 };
 

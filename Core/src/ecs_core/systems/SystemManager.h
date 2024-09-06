@@ -2,13 +2,11 @@
 #ifndef SYSTEMMANAGER_H
 #define SYSTEMMANAGER_H
 
-#include <cassert>
-
 #include "System.h"
-#include "../EcsAliases.h"
-#include <memory>
-#include <unordered_map>
 #include "SpecializedSystems.h"
+#include "../EcsAliases.h"
+#include <cassert>
+#include <memory>
 
 //TODO: investigate forward declaration vs include header
 // Include doesn't work. Probably there is a ciclic depencency

@@ -2,6 +2,8 @@
 #ifndef COMPONENTS_H
 #define COMPONENTS_H
 
+#include <iostream>
+
 #include "../ecs_core/components/Component.h"
 
 struct Position2D : AComponent
@@ -33,7 +35,7 @@ struct TilesInfo : AComponent
 
 struct Direction2D : AComponent
 {
-	int x, y;
+	int x,y;
 };
 
 struct Collider2D : AComponent
@@ -41,6 +43,15 @@ struct Collider2D : AComponent
 	int width, height;
 };
 
+struct DistanceTravelled : AComponent
+{
+	float horizontal, vertical;
+};
+
+struct StartingPositionX : AComponent
+{
+	float value;
+};
 struct PlayerTag : AComponent{};
 struct EnemyTag : AComponent{};
 struct BulletTag : AComponent{};

@@ -6,6 +6,8 @@
 #include <SDL_timer.h>
 #include <SDL_video.h>
 
+#include "settings/GameSettings.h"
+
 Game *game = nullptr;
 
 int main(int argc, char* argv[])
@@ -15,8 +17,8 @@ int main(int argc, char* argv[])
         "This is my GameEngine",
         SDL_WINDOWPOS_CENTERED,
         SDL_WINDOWPOS_CENTERED,
-        600,
-        600,
+        GameSettings::windowWidth,
+        GameSettings::windowHeight,
         false);
 
 	// TODO IMPLEMENT FIXED TIMESTEP UPDATES AND REFACTOR WHOLE GAME LOOP
