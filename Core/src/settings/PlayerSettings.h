@@ -15,6 +15,7 @@ public:
 		static constexpr int width {3};
 		static constexpr int height {20};
 		static constexpr int speed {300};
+		static constexpr float lifetimeInSeconds {2};
 	};
 };
 

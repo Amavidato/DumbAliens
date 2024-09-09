@@ -16,6 +16,8 @@
 #include "my_ecs_stuff/RenderingCollidersSystem.h"
 #include "my_ecs_stuff/RenderMapSystem.h"
 #include "my_ecs_stuff/BulletCollisionSystem.h"
+#include "my_ecs_stuff/BulletAutodestructionSystem.h"
+#include "my_ecs_stuff/TimerUpdateSystem.h"
 #include "settings/EnemySettings.h"
 #include "settings/GameSettings.h"
 #include "settings/PlayerSettings.h"
@@ -120,6 +122,8 @@ void Game::InitEcsSystems()
 	pEcsManager_->RegisterSystem(std::make_shared<RendererSystem>());
 	pEcsManager_->RegisterSystem(std::make_shared<InputHandlerSytem>());
 	pEcsManager_->RegisterSystem(std::make_shared<PlayerInputSystem>());
+	pEcsManager_->RegisterSystem(std::make_shared<TimerUpdateSystem>());
+	pEcsManager_->RegisterSystem(std::make_shared<BulletAutodestructionSystem>());
 	pEcsManager_->RegisterSystem(std::make_shared<CollisionSystem>());
 	pEcsManager_->RegisterSystem(std::make_shared<RenderingCollidersSystem>());
 	pEcsManager_->RegisterSystem(std::make_shared<EnemyMovementSystem>());

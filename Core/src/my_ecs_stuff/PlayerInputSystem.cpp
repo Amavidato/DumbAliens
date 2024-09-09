@@ -58,15 +58,20 @@ void PlayerInputSystem::Shoot(EcsManager* ecsManager, Entity playerEntity)
 	auto bullet = ecsManager->CreateEntity();
 	ecsManager->AddComponent<BulletTag>(bullet);
 	auto position = ecsManager->GetComponent<Position2D>(playerEntity);
+	position.x += PlayerSettings::playerWidth / 2;
 	ecsManager->AddComponent<Position2D>(bullet, position);
 	ecsManager->AddComponent<Direction2D>(bullet, Direction2D{.x = 0,.y = -1});
 	ecsManager->AddComponent<RendererData>(bullet, RendererData{
-		.texturePath = PlayerSettings::BulletSettings::bulletTexturePath,
-		.width = PlayerSettings::BulletSettings::bulletWidth,
-		.height = PlayerSettings::BulletSettings::bulletHeight
+		.texturePath = PlayerSettings::BulletSettings::texturePath,
+		.width = PlayerSettings::BulletSettings::width,
+		.height = PlayerSettings::BulletSettings::height
 	});
 	ecsManager->AddComponent<Collider2D>(bullet, Collider2D{
-		.width = PlayerSettings::BulletSettings::bulletWidth,
-		.height = PlayerSettings::BulletSettings::bulletHeight
+		.width = PlayerSettings::BulletSettings::width,
+		.height = PlayerSettings::BulletSettings::height
+	});
+	ecsManager->AddComponent(bullet, Timer{
+		.durationInSeconds = PlayerSettings::BulletSettings::lifetimeInSeconds,
+		.elapsedTimeInSeconds = 0
 	});
 }

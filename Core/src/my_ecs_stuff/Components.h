@@ -56,4 +56,9 @@ struct PlayerTag : AComponent{};
 struct EnemyTag : AComponent{};
 struct BulletTag : AComponent{};
 
+struct Timer : AComponent 
+{
+	float durationInSeconds;
+	float elapsedTimeInSeconds;
+};
 #endif // COMPONENTS_H

@@ -158,6 +158,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\my_ecs_stuff\BulletAutodestructionSystem.cpp" />
+    <ClCompile Include="Classe.cpp" />
     <ClCompile Include="src\ecs_core\components\ComponentManager.cpp">
       <RuntimeLibrary>MultiThreadedDebugDll</RuntimeLibrary>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -472,8 +474,11 @@
     <ClCompile Include="src\my_ecs_stuff\RendererSystem.cpp" />
     <ClCompile Include="src\my_ecs_stuff\RenderingCollidersSystem.cpp" />
     <ClCompile Include="src\my_ecs_stuff\RenderMapSystem.cpp" />
+    <ClCompile Include="src\my_ecs_stuff\TimerUpdateSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\my_ecs_stuff\BulletAutodestructionSystem.h" />
+    <ClInclude Include="Classe.h" />
     <ClInclude Include="src\ecs_core\components\Component.h" />
     <ClInclude Include="src\ecs_core\components\ComponentArray.h" />
     <ClInclude Include="src\ecs_core\components\ComponentManager.h" />
@@ -498,6 +503,10 @@
     <ClInclude Include="src\my_ecs_stuff\RendererSystem.h" />
     <ClInclude Include="src\my_ecs_stuff\RenderingCollidersSystem.h" />
     <ClInclude Include="src\my_ecs_stuff\RenderMapSystem.h" />
+    <ClInclude Include="src\my_ecs_stuff\TimerUpdateSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="src\settings\EnemySettings.h" />
     <ClInclude Include="src\settings\GameSettings.h" />
     <ClInclude Include="src\settings\PlayerSettings.h" />
