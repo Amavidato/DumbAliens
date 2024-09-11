@@ -72,9 +72,6 @@
     <ClCompile Include="src\my_ecs_stuff\BulletAutodestructionSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Classe.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\my_ecs_stuff\TimerUpdateSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -165,9 +162,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\my_ecs_stuff\BulletAutodestructionSystem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Classe.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\my_ecs_stuff\TimerUpdateSystem.h">

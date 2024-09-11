@@ -78,12 +78,14 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <PublicIncludeDirectories>$(PublicIncludeDirectories)</PublicIncludeDirectories>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
+    <PublicIncludeDirectories>$(PublicIncludeDirectories)</PublicIncludeDirectories>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -109,14 +111,14 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>C:\Users\amato\Workspace\CommonLibs\SDL2\include;C:\Users\amato\Workspace\CommonLibs\SDL2_image\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\amato\Workspace\CommonLibs\SDL2\include;C:\Users\amato\Workspace\CommonLibs\SDL2_image\include;C:\Users\amato\Workspace\CommonLibs\SDL2_ttf\include</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\amato\Workspace\CommonLibs\SDL2\lib\x64;C:\Users\amato\Workspace\CommonLibs\SDL2_image\lib\x64</AdditionalLibraryDirectories>
-      <AdditionalDependencies>$(CoreLibraryDependencies);%(AdditionalDependencies);SDL2.lib;SDL2main.lib;SDL2_image.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\amato\Workspace\CommonLibs\SDL2_ttf\lib\64;C:\Users\amato\Workspace\CommonLibs\SDL2\lib\x64;C:\Users\amato\Workspace\CommonLibs\SDL2_image\lib\x64</AdditionalLibraryDirectories>
+      <AdditionalDependencies>$(CoreLibraryDependencies);%(AdditionalDependencies);SDL2_ttf.lib;SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -159,7 +161,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\my_ecs_stuff\BulletAutodestructionSystem.cpp" />
-    <ClCompile Include="Classe.cpp" />
     <ClCompile Include="src\ecs_core\components\ComponentManager.cpp">
       <RuntimeLibrary>MultiThreadedDebugDll</RuntimeLibrary>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -478,7 +479,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\my_ecs_stuff\BulletAutodestructionSystem.h" />
-    <ClInclude Include="Classe.h" />
     <ClInclude Include="src\ecs_core\components\Component.h" />
     <ClInclude Include="src\ecs_core\components\ComponentArray.h" />
     <ClInclude Include="src\ecs_core\components\ComponentManager.h" />
