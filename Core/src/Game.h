@@ -29,6 +29,5 @@ private:
 	void InitPlayer();
 	void InitEnemies();
 	void SetupScoreLabelForRender();
-	//void InitMap();
 };
 #endif
