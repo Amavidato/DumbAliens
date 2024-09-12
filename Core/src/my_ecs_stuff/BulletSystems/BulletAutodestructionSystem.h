@@ -2,7 +2,7 @@
 #ifndef BULLETAUTODESTRUCTION_H
 #define BULLETAUTODESTRUCTION_H
 
-#include "../ecs_core/systems/SpecializedSystems.h"
+#include "../../ecs_core/systems/SpecializedSystems.h"
 
 class BulletAutodestructionSystem : public LogicSystem
 {

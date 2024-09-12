@@ -1,7 +1,7 @@
 #include "BulletAutodestructionSystem.h"
-#include "Components.h"
-#include "../ecs_core/EcsManager.h"
-#include "../ecs_core/commandBuffer/EcsCommandBuffer.h"
+#include "../Components.h"
+#include "../../ecs_core/EcsManager.h"
+#include "../../ecs_core/commandBuffer/EcsCommandBuffer.h"
 
 void BulletAutodestructionSystem::OnCreate()
 {

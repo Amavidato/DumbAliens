@@ -3,14 +3,13 @@
 
 #include <SDL_events.h>
 #include <SDL_render.h>
-
 #include "ecs_core/EcsManager.h"
 
 class Game
 {
 public:
-    Game();
-    ~Game();
+    Game() = default;
+    ~Game() = default;
     void Init(const char* title, int xpos, int ypos, int width, int height, bool fullscreen);
 
     void Update(float deltaTime);
@@ -19,6 +18,7 @@ public:
 	static std::unique_ptr<SDL_Renderer, decltype((SDL_DestroyRenderer))> renderer;
 	static std::unique_ptr<SDL_Window, decltype((SDL_DestroyWindow))> window;
 	static bool IS_RUNNING;
+	static int SCORE;
 	static SDL_Event event;
 	
 private:
@@ -28,6 +28,7 @@ private:
 	void InitEcsSystems();
 	void InitPlayer();
 	void InitEnemies();
+	void SetupScoreLabelForRender();
 	//void InitMap();
 };
 #endif

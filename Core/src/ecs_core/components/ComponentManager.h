@@ -7,13 +7,14 @@
 
 #include <memory>
 #include <unordered_map>
+#include <iostream>
 
 class ComponentManager
 {
 public:
 	template <IsAComponentStruct T> bool HasComponent(Entity entity)
 	{
-		return GetComponentArray<T>()->HasComponent(entity);
+		return DoesAComponentArrayExists<T>() && GetComponentArray<T>()->HasComponent(entity);
 	}
 	
 	template <IsAComponentStruct T> void AddComponent(Entity entity, T component)
@@ -25,7 +26,10 @@ public:
 	template <IsAComponentStruct T> void RemoveComponent(Entity entity)
 	{
 		// Remove a component from the array for an entity
-		GetComponentArray<T>()->RemoveData(entity);
+		if (DoesAComponentArrayExists<T>())
+			GetComponentArray<T>()->RemoveData(entity);
+		else
+			std::cout << "No component array exist for this type" << std::endl;
 	}
 	
 	template <IsAComponentStruct T> T& GetComponent(Entity entity)
@@ -62,7 +66,8 @@ private:
 	// The component type to be assigned to the next registered component
 	ComponentType nextComponentType_{};
 	// Convenience function to get statically casted pointer to the ComponentArray of type T
-	template <IsAComponentStruct T> std::shared_ptr<ComponentArray<T>> GetComponentArray(bool createIfNotExists = false)
+	template <IsAComponentStruct T> 
+	std::shared_ptr<ComponentArray<T>> GetComponentArray(bool createIfNotExists = false)
 	{
 		ComponentType componentType = GetComponentType<T>();
 		if(createIfNotExists)
@@ -78,6 +83,13 @@ private:
 		}
 
 		return std::static_pointer_cast<ComponentArray<T>>(componentArrays_[componentType]);
+	}
+
+	template <IsAComponentStruct T> 
+	bool DoesAComponentArrayExists() 
+	{
+		ComponentType componentType = GetComponentType<T>();
+		return componentArrays_.contains(componentType);
 	}
 
 	// Method to get a new incremental "id" every time this method is called.

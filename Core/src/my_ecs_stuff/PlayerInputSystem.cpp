@@ -29,7 +29,7 @@ void PlayerInputSystem::OnUpdate(float deltaTime, EcsManager* ecsManager)
 				direction.x = 1;
 				break;
 			case SDLK_SPACE:
-			 	Shoot(ecsManager, entity);
+				Shoot(ecsManager, entity);
 			 	break;
 			default:
 				break;
@@ -53,15 +53,31 @@ void PlayerInputSystem::OnUpdate(float deltaTime, EcsManager* ecsManager)
 	}
 }
 
-void PlayerInputSystem::Shoot(EcsManager* ecsManager, Entity playerEntity)
+void PlayerInputSystem::Shoot(EcsManager* ecsManager, Entity playerEntity) const
 {
+	if (!CanShoot(ecsManager, playerEntity))
+		return;
+	if (ecsManager->HasComponent<Timer>(playerEntity))
+	{
+		auto& timer = ecsManager->GetComponent<Timer>(playerEntity);
+		timer.elapsedTimeInSeconds = 0;
+	}
+	else
+	{
+		ecsManager->AddComponent(playerEntity, Timer{
+			.durationInSeconds = PlayerSettings::secondsBetweenShoots,
+			.elapsedTimeInSeconds = 0
+			});
+	}
+
 	auto bullet = ecsManager->CreateEntity();
 	ecsManager->AddComponent<BulletTag>(bullet);
 	auto position = ecsManager->GetComponent<Position2D>(playerEntity);
 	position.x += PlayerSettings::playerWidth / 2;
-	ecsManager->AddComponent<Position2D>(bullet, position);
-	ecsManager->AddComponent<Direction2D>(bullet, Direction2D{.x = 0,.y = -1});
-	ecsManager->AddComponent<RendererData>(bullet, RendererData{
+	position.y -= PlayerSettings::BulletSettings::height;
+	ecsManager->AddComponent(bullet, position);
+	ecsManager->AddComponent(bullet, Direction2D{.x = 0,.y = -1});
+	ecsManager->AddComponent(bullet, RendererData{
 		.texturePath = PlayerSettings::BulletSettings::texturePath,
 		.width = PlayerSettings::BulletSettings::width,
 		.height = PlayerSettings::BulletSettings::height
@@ -75,3 +91,14 @@ void PlayerInputSystem::Shoot(EcsManager* ecsManager, Entity playerEntity)
 		.elapsedTimeInSeconds = 0
 	});
 }
+
+bool PlayerInputSystem::CanShoot(EcsManager* ecsManager, Entity entity) const
+{
+	if (ecsManager->HasComponent<Timer>(entity)) 
+	{
+		auto timer = ecsManager->GetComponent<Timer>(entity);
+		return timer.elapsedTimeInSeconds > timer.durationInSeconds;
+	}
+	return true;
+}
+

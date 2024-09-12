@@ -1,7 +1,7 @@
 ﻿#pragma once
 #ifndef BULLETCOLLISIONSYSTEM_H
 #define BULLETCOLLISIONSYSTEM_H
-#include "../ecs_core/systems/SpecializedSystems.h"
+#include "../../ecs_core/systems/SpecializedSystems.h"
 
 class BulletCollisionSystem : public LogicSystem
 {

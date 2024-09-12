@@ -8,7 +8,9 @@ class PlayerInputSystem : public InitializationSystem
 public:
 	void OnCreate() override;
 	void OnUpdate(float deltaTime, EcsManager* ecsManager) override;
-	void Shoot(EcsManager* ecsManager, Entity entity);
+private:
+	void Shoot(EcsManager* ecsManager, Entity entity) const;
+	bool CanShoot(EcsManager* ecsManager, Entity entity) const;
 };
 
 #endif // PLAYERINPUTSYSTEM_H

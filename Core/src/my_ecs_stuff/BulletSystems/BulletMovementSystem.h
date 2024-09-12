@@ -1,7 +1,7 @@
 ﻿#pragma once
 #ifndef BULLETMOVEMENTSYSTEM_H
 #define BULLETMOVEMENTSYSTEM_H
-#include "../ecs_core/systems/SpecializedSystems.h"
+#include "../../ecs_core/systems/SpecializedSystems.h"
 
 class BulletMovementSystem : public LogicSystem
 {

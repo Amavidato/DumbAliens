@@ -1,11 +1,8 @@
 ﻿#include "Game.h"
+#include "SDL_ttf.h"
 
-#include <format>
-#include <iostream>
-
-#include "SDL_image.h"
 #include "graphics/TextureManager.h"
-#include "my_ecs_stuff/BulletMovementSystem.h"
+#include "my_ecs_stuff/BulletSystems/BulletMovementSystem.h"
 #include "my_ecs_stuff/CollisionSystem.h"
 #include "my_ecs_stuff/Components.h"
 #include "my_ecs_stuff/EnemyMovementSystem.h"
@@ -14,13 +11,17 @@
 #include "my_ecs_stuff/PlayerInputSystem.h"
 #include "my_ecs_stuff/RendererSystem.h"
 #include "my_ecs_stuff/RenderingCollidersSystem.h"
-#include "my_ecs_stuff/RenderMapSystem.h"
-#include "my_ecs_stuff/BulletCollisionSystem.h"
-#include "my_ecs_stuff/BulletAutodestructionSystem.h"
+#include "my_ecs_stuff/BulletSystems/BulletCollisionSystem.h"
+#include "my_ecs_stuff/BulletSystems/BulletAutodestructionSystem.h"
 #include "my_ecs_stuff/TimerUpdateSystem.h"
 #include "settings/EnemySettings.h"
 #include "settings/GameSettings.h"
 #include "settings/PlayerSettings.h"
+
+#include "SDL_image.h"
+#include <string>
+#include <format>
+#include <iostream>
 
 std::unique_ptr<Entity> player;
 std::unique_ptr<Entity> enemies[EnemySettings::NumEnemies()];
@@ -28,18 +29,8 @@ std::unique_ptr<Entity> map;
 std::unique_ptr<SDL_Renderer, decltype((SDL_DestroyRenderer))> Game::renderer {nullptr,SDL_DestroyRenderer};
 std::unique_ptr<SDL_Window, decltype((SDL_DestroyWindow))> Game::window {nullptr,SDL_DestroyWindow};
 bool Game::IS_RUNNING = false;
-
+int Game::SCORE{0};
 SDL_Event Game::event;
-	
-Game::Game()
-{
-	
-}
-
-Game::~Game()
-{
-    
-}
 
 void Game::Init(
     const char* title,
@@ -49,6 +40,11 @@ void Game::Init(
     int height,
     bool fullscreen)
 {
+	//Initialize SDL_ttf
+	if (TTF_Init() == -1)
+	{
+		printf("SDL_ttf could not initialize! SDL_ttf Error: %s\n", TTF_GetError());
+	} 
 	InitWindow(title,
 			xpos,
 			ypos,
@@ -58,7 +54,6 @@ void Game::Init(
 	InitEcsSystems();
 	InitPlayer();
 	InitEnemies();
-	//InitMap();
 }
 
 void Game::Update(float deltaTime)
@@ -67,10 +62,12 @@ void Game::Update(float deltaTime)
     mUpdatesCounter++;
 	//First clear the renderer
 	SDL_RenderClear(Game::renderer.get());
+	//Then fill with things to draw
     pEcsManager_->UpdateSystems(deltaTime);
+	SetupScoreLabelForRender();
+	
 	//Finally repaint the renderer with the new stuff
 	SDL_RenderPresent(Game::renderer.get());
-	std::cout << std::format("Frame number: {}",mUpdatesCounter)<<std::endl;
 }
 
 void Game::Clean()
@@ -117,7 +114,6 @@ void Game::InitWindow(const char* title, int xpos, int ypos, int width, int heig
 void Game::InitEcsSystems()
 {
 	pEcsManager_ = std::make_unique<EcsManager>();
-	pEcsManager_->RegisterSystem(std::make_shared<RenderMapSystem>());
 	pEcsManager_->RegisterSystem(std::make_shared<MovementSystem>());
 	pEcsManager_->RegisterSystem(std::make_shared<RendererSystem>());
 	pEcsManager_->RegisterSystem(std::make_shared<InputHandlerSytem>());
@@ -125,7 +121,7 @@ void Game::InitEcsSystems()
 	pEcsManager_->RegisterSystem(std::make_shared<TimerUpdateSystem>());
 	pEcsManager_->RegisterSystem(std::make_shared<BulletAutodestructionSystem>());
 	pEcsManager_->RegisterSystem(std::make_shared<CollisionSystem>());
-	pEcsManager_->RegisterSystem(std::make_shared<RenderingCollidersSystem>());
+	//pEcsManager_->RegisterSystem(std::make_shared<RenderingCollidersSystem>());
 	pEcsManager_->RegisterSystem(std::make_shared<EnemyMovementSystem>());
 	pEcsManager_->RegisterSystem(std::make_shared<BulletMovementSystem>());
 	pEcsManager_->RegisterSystem(std::make_shared<BulletCollisionSystem>());
@@ -186,48 +182,36 @@ void Game::InitEnemies()
 	}
 }
 
-/*
-void Game::InitMap()
+void Game::SetupScoreLabelForRender()
 {
-	map = std::make_unique<Entity>(pEcsManager_->CreateEntity());
+	TTF_Font* Font = TTF_OpenFont("assets/CascadiaCode.ttf", 24);
+	SDL_Color FontColor{ 255, 255, 255 };
 
-	pEcsManager_->AddComponent(*map,
-		TerrainTiles{
-			.terrainTilesIds = {
-				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-				{0,0,0,0,0,1,1,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-				{0,0,0,0,0,0,2,2,2,1,1,2,1,0,2,2,0,0,0,0,0,0,0,0,0},
-				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-				}
-		});
-	pEcsManager_->AddComponent(*map,
-		TilesInfo{
-			.mapIndexToTexturePath =
-				{
-				"assets/map/water.png",
-				"assets/map/grass.png",
-				"assets/map/dirt.png"
-			},
-			.tileWidth = 32,
-			.tileHeight = 32
-		});
+	std::string scoreLabel{ "SCORE: " };
+	scoreLabel.append(std::to_string(Game::SCORE));
+	SDL_Surface* surfaceMessage = TTF_RenderText_Solid(Font, scoreLabel.c_str(), FontColor);
+
+	if (surfaceMessage == NULL)
+	{
+		printf("Unable to render text surface! SDL_ttf Error: %s\n", TTF_GetError());
+	}
+	else
+	{
+		SDL_Texture* Message = SDL_CreateTextureFromSurface(Game::renderer.get(), surfaceMessage);
+		if (Message == NULL)
+		{
+			printf("Unable to create texture from rendered text! SDL Error: %s\n", SDL_GetError());
+		}
+		else
+		{
+			SDL_Rect Message_rect{
+				.x = 0,
+				.y = 0,
+				.w = 0,
+				.h = 0
+			};
+			TTF_SizeText(Font, scoreLabel.c_str(), &Message_rect.w, &Message_rect.h);
+			SDL_RenderCopy(Game::renderer.get(), Message, NULL, &Message_rect);
+		}
+	}
 }
-*/
-
-

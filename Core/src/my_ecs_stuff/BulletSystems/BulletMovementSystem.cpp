@@ -1,8 +1,8 @@
 ﻿#include "BulletMovementSystem.h"
 
-#include "Components.h"
-#include "../ecs_core/EcsManager.h"
-#include "../settings/PlayerSettings.h"
+#include "../Components.h"
+#include "../../ecs_core/EcsManager.h"
+#include "../../settings/PlayerSettings.h"
 
 void BulletMovementSystem::OnCreate()
 {

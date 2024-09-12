@@ -39,10 +39,10 @@
     <ClCompile Include="src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\my_ecs_stuff\BulletCollisionSystem.cpp">
+    <ClCompile Include="src\my_ecs_stuff\BulletSystems\BulletCollisionSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\my_ecs_stuff\BulletMovementSystem.cpp">
+    <ClCompile Include="src\my_ecs_stuff\BulletSystems\BulletMovementSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\my_ecs_stuff\CollisionSystem.cpp">
@@ -66,10 +66,7 @@
     <ClCompile Include="src\my_ecs_stuff\RenderingCollidersSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\my_ecs_stuff\RenderMapSystem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\my_ecs_stuff\BulletAutodestructionSystem.cpp">
+    <ClCompile Include="src\my_ecs_stuff\BulletSystems\BulletAutodestructionSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\my_ecs_stuff\TimerUpdateSystem.cpp">
@@ -116,10 +113,10 @@
     <ClInclude Include="src\graphics\TextureManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\my_ecs_stuff\BulletCollisionSystem.h">
+    <ClInclude Include="src\my_ecs_stuff\BulletSystems\BulletCollisionSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\my_ecs_stuff\BulletMovementSystem.h">
+    <ClInclude Include="src\my_ecs_stuff\BulletSystems\BulletMovementSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\my_ecs_stuff\CollisionSystem.h">
@@ -146,9 +143,6 @@
     <ClInclude Include="src\my_ecs_stuff\RenderingCollidersSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\my_ecs_stuff\RenderMapSystem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\settings\EnemySettings.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -161,7 +155,7 @@
     <ClInclude Include="src\Utilities.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\my_ecs_stuff\BulletAutodestructionSystem.h">
+    <ClInclude Include="src\my_ecs_stuff\BulletSystems\BulletAutodestructionSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\my_ecs_stuff\TimerUpdateSystem.h">

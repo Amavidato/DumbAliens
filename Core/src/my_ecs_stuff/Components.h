@@ -61,4 +61,5 @@ struct Timer : AComponent
 	float durationInSeconds;
 	float elapsedTimeInSeconds;
 };
+
 #endif // COMPONENTS_H

@@ -1,9 +1,10 @@
 ﻿#include "BulletCollisionSystem.h"
 
-#include "Components.h"
-#include "../Utilities.h"
-#include "../ecs_core/EcsManager.h"
-#include "../ecs_core/commandBuffer/EcsCommandBuffer.h"
+#include "../Components.h"
+#include "../../Utilities.h"
+#include "../../ecs_core/EcsManager.h"
+#include "../../ecs_core/commandBuffer/EcsCommandBuffer.h"
+#include "../../Game.h"
 
 void BulletCollisionSystem::OnCreate()
 {
@@ -21,10 +22,11 @@ void BulletCollisionSystem::OnUpdate(float deltaTime, EcsManager* ecsManager)
 		{
 			if(utils::IsThereACollision(*bulletIterator, *enemyIterator, ecsManager))
         	{
-				ecb->DestroyEntity(*bulletIterator);
+ 				ecb->DestroyEntity(*bulletIterator);
  				ecb->DestroyEntity(*enemyIterator);
 				enemies.erase(enemyIterator);
 				hit = true;
+				Game::SCORE += 10;
 				break;
         	}
 			++enemyIterator;

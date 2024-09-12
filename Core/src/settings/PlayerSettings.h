@@ -9,6 +9,7 @@ public:
 	static constexpr int speed {100};
 	static constexpr int playerWidth {48};
 	static constexpr int playerHeight {48};
+	static constexpr float secondsBetweenShoots {0.3};
 	struct BulletSettings
 	{
 		static constexpr const char* texturePath {"assets/player_white.png"};
