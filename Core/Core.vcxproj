@@ -160,7 +160,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\my_ecs_stuff\BulletSystems\BulletAutodestructionSystem.cpp" />
+    <ClCompile Include="src\ecs_project_specific_stuff\BulletSystems\BulletAutodestructionSystem.cpp" />
     <ClCompile Include="src\ecs_core\components\ComponentManager.cpp">
       <RuntimeLibrary>MultiThreadedDebugDll</RuntimeLibrary>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -465,19 +465,19 @@
       <LinkCompiled>true</LinkCompiled>
     </ClCompile>
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\my_ecs_stuff\BulletSystems\BulletCollisionSystem.cpp" />
-    <ClCompile Include="src\my_ecs_stuff\BulletSystems\BulletMovementSystem.cpp" />
-    <ClCompile Include="src\my_ecs_stuff\CollisionSystem.cpp" />
-    <ClCompile Include="src\my_ecs_stuff\EnemyMovementSystem.cpp" />
-    <ClCompile Include="src\my_ecs_stuff\InputHandlerSytem.cpp" />
-    <ClCompile Include="src\my_ecs_stuff\MovementSystem.cpp" />
-    <ClCompile Include="src\my_ecs_stuff\PlayerInputSystem.cpp" />
-    <ClCompile Include="src\my_ecs_stuff\RendererSystem.cpp" />
-    <ClCompile Include="src\my_ecs_stuff\RenderingCollidersSystem.cpp" />
-    <ClCompile Include="src\my_ecs_stuff\TimerUpdateSystem.cpp" />
+    <ClCompile Include="src\ecs_project_specific_stuff\BulletSystems\BulletCollisionSystem.cpp" />
+    <ClCompile Include="src\ecs_project_specific_stuff\BulletSystems\BulletMovementSystem.cpp" />
+    <ClCompile Include="src\ecs_project_specific_stuff\CollisionSystem.cpp" />
+    <ClCompile Include="src\ecs_project_specific_stuff\EnemyMovementSystem.cpp" />
+    <ClCompile Include="src\ecs_project_specific_stuff\InputHandlerSytem.cpp" />
+    <ClCompile Include="src\ecs_project_specific_stuff\MovementSystem.cpp" />
+    <ClCompile Include="src\ecs_project_specific_stuff\PlayerInputSystem.cpp" />
+    <ClCompile Include="src\ecs_project_specific_stuff\RendererSystem.cpp" />
+    <ClCompile Include="src\ecs_project_specific_stuff\RenderingCollidersSystem.cpp" />
+    <ClCompile Include="src\ecs_project_specific_stuff\TimerUpdateSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\my_ecs_stuff\BulletSystems\BulletAutodestructionSystem.h" />
+    <ClInclude Include="src\ecs_project_specific_stuff\BulletSystems\BulletAutodestructionSystem.h" />
     <ClInclude Include="src\ecs_core\components\Component.h" />
     <ClInclude Include="src\ecs_core\components\ComponentArray.h" />
     <ClInclude Include="src\ecs_core\components\ComponentManager.h" />
@@ -491,17 +491,17 @@
     <ClInclude Include="src\ecs_core\systems\SystemManager.h" />
     <ClInclude Include="src\Game.h" />
     <ClInclude Include="src\graphics\TextureManager.h" />
-    <ClInclude Include="src\my_ecs_stuff\BulletSystems\BulletCollisionSystem.h" />
-    <ClInclude Include="src\my_ecs_stuff\BulletSystems\BulletMovementSystem.h" />
-    <ClInclude Include="src\my_ecs_stuff\CollisionSystem.h" />
-    <ClInclude Include="src\my_ecs_stuff\Components.h" />
-    <ClInclude Include="src\my_ecs_stuff\EnemyMovementSystem.h" />
-    <ClInclude Include="src\my_ecs_stuff\InputHandlerSytem.h" />
-    <ClInclude Include="src\my_ecs_stuff\MovementSystem.h" />
-    <ClInclude Include="src\my_ecs_stuff\PlayerInputSystem.h" />
-    <ClInclude Include="src\my_ecs_stuff\RendererSystem.h" />
-    <ClInclude Include="src\my_ecs_stuff\RenderingCollidersSystem.h" />
-    <ClInclude Include="src\my_ecs_stuff\TimerUpdateSystem.h">
+    <ClInclude Include="src\ecs_project_specific_stuff\BulletSystems\BulletCollisionSystem.h" />
+    <ClInclude Include="src\ecs_project_specific_stuff\BulletSystems\BulletMovementSystem.h" />
+    <ClInclude Include="src\ecs_project_specific_stuff\CollisionSystem.h" />
+    <ClInclude Include="src\ecs_project_specific_stuff\Components.h" />
+    <ClInclude Include="src\ecs_project_specific_stuff\EnemyMovementSystem.h" />
+    <ClInclude Include="src\ecs_project_specific_stuff\InputHandlerSytem.h" />
+    <ClInclude Include="src\ecs_project_specific_stuff\MovementSystem.h" />
+    <ClInclude Include="src\ecs_project_specific_stuff\PlayerInputSystem.h" />
+    <ClInclude Include="src\ecs_project_specific_stuff\RendererSystem.h" />
+    <ClInclude Include="src\ecs_project_specific_stuff\RenderingCollidersSystem.h" />
+    <ClInclude Include="src\ecs_project_specific_stuff\TimerUpdateSystem.h">
       <SubType>
       </SubType>
     </ClInclude>

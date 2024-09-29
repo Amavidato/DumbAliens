@@ -39,37 +39,37 @@
     <ClCompile Include="src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\my_ecs_stuff\BulletSystems\BulletCollisionSystem.cpp">
+    <ClCompile Include="src\ecs_project_specific_stuff\BulletSystems\BulletCollisionSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\my_ecs_stuff\BulletSystems\BulletMovementSystem.cpp">
+    <ClCompile Include="src\ecs_project_specific_stuff\BulletSystems\BulletMovementSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\my_ecs_stuff\CollisionSystem.cpp">
+    <ClCompile Include="src\ecs_project_specific_stuff\CollisionSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\my_ecs_stuff\EnemyMovementSystem.cpp">
+    <ClCompile Include="src\ecs_project_specific_stuff\EnemyMovementSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\my_ecs_stuff\InputHandlerSytem.cpp">
+    <ClCompile Include="src\ecs_project_specific_stuff\InputHandlerSytem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\my_ecs_stuff\MovementSystem.cpp">
+    <ClCompile Include="src\ecs_project_specific_stuff\MovementSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\my_ecs_stuff\PlayerInputSystem.cpp">
+    <ClCompile Include="src\ecs_project_specific_stuff\PlayerInputSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\my_ecs_stuff\RendererSystem.cpp">
+    <ClCompile Include="src\ecs_project_specific_stuff\RendererSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\my_ecs_stuff\RenderingCollidersSystem.cpp">
+    <ClCompile Include="src\ecs_project_specific_stuff\RenderingCollidersSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\my_ecs_stuff\BulletSystems\BulletAutodestructionSystem.cpp">
+    <ClCompile Include="src\ecs_project_specific_stuff\BulletSystems\BulletAutodestructionSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\my_ecs_stuff\TimerUpdateSystem.cpp">
+    <ClCompile Include="src\ecs_project_specific_stuff\TimerUpdateSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -113,34 +113,34 @@
     <ClInclude Include="src\graphics\TextureManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\my_ecs_stuff\BulletSystems\BulletCollisionSystem.h">
+    <ClInclude Include="src\ecs_project_specific_stuff\BulletSystems\BulletCollisionSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\my_ecs_stuff\BulletSystems\BulletMovementSystem.h">
+    <ClInclude Include="src\ecs_project_specific_stuff\BulletSystems\BulletMovementSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\my_ecs_stuff\CollisionSystem.h">
+    <ClInclude Include="src\ecs_project_specific_stuff\CollisionSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\my_ecs_stuff\Components.h">
+    <ClInclude Include="src\ecs_project_specific_stuff\Components.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\my_ecs_stuff\EnemyMovementSystem.h">
+    <ClInclude Include="src\ecs_project_specific_stuff\EnemyMovementSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\my_ecs_stuff\InputHandlerSytem.h">
+    <ClInclude Include="src\ecs_project_specific_stuff\InputHandlerSytem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\my_ecs_stuff\MovementSystem.h">
+    <ClInclude Include="src\ecs_project_specific_stuff\MovementSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\my_ecs_stuff\PlayerInputSystem.h">
+    <ClInclude Include="src\ecs_project_specific_stuff\PlayerInputSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\my_ecs_stuff\RendererSystem.h">
+    <ClInclude Include="src\ecs_project_specific_stuff\RendererSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\my_ecs_stuff\RenderingCollidersSystem.h">
+    <ClInclude Include="src\ecs_project_specific_stuff\RenderingCollidersSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\settings\EnemySettings.h">
@@ -155,10 +155,10 @@
     <ClInclude Include="src\Utilities.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\my_ecs_stuff\BulletSystems\BulletAutodestructionSystem.h">
+    <ClInclude Include="src\ecs_project_specific_stuff\BulletSystems\BulletAutodestructionSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\my_ecs_stuff\TimerUpdateSystem.h">
+    <ClInclude Include="src\ecs_project_specific_stuff\TimerUpdateSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
