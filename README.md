@@ -7,9 +7,11 @@ I made this very tiny game just as an excuse to implement a simplified version o
 * Create a simple ECS from the ground up to better understand its inner working;
 * Refreshing my knowledge of C++;
 
+![DumbAliens](https://github.com/user-attachments/assets/835577ea-63a0-4906-9732-0c8adb99f4ee)
+
 
 ## Usage/Examples
-This API is intended to be used mainly through its [EntityManager](https://github.com/Amavidato/DumbAliens/blob/master/Core/src/ecs_core/EcsManager.h) class.
+This API is intended to be used mainly through its [EcsManager](https://github.com/Amavidato/DumbAliens/blob/master/Core/src/ecs_core/EcsManager.h) class.
 
 #### Create an Entity:
 ```cpp
