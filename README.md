@@ -59,6 +59,7 @@ In this ECS implementation a new system must (publicly) inherit from one of the 
 * **InitializationSystem**: used to initialize enitites;
 * **LogicSystem**: used to implement gameloop logic;
 * **RenderingSystem**: used in rendering phase;
+
 and it must override the public methods:
 * **OnCreate**: executed once when the system is created. It is a good point to specify the "Signature" of the system (i.e. the set of components that an entity must have to be affected by this system).
 * **OnUpdate**: executed once per frame. Logic goes here and will affect all entities (accessible via the  **entitites** field) having all the components specified in the system's signature
