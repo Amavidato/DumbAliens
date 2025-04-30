@@ -478,7 +478,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\ecs_project_specific_stuff\BulletSystems\BulletAutodestructionSystem.h" />
-    <ClInclude Include="src\ecs_core\components\Component.h" />
     <ClInclude Include="src\ecs_core\components\ComponentArray.h" />
     <ClInclude Include="src\ecs_core\components\ComponentManager.h" />
     <ClInclude Include="src\ecs_core\commandBuffer\EcsCommandBuffer.h" />

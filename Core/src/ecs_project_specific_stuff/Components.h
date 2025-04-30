@@ -4,59 +4,60 @@
 
 #include <iostream>
 
-#include "../ecs_core/components/Component.h"
-
-struct Position2D : AComponent
+struct Position2D
 {
 	float x, y;
 };
 
-struct Speed : AComponent
+struct Speed
 {
 	int value;
 };
 
-struct RendererData : AComponent
+struct RendererData
 {
 	const char* texturePath;
 	int width, height;
 };
 
-struct TerrainTiles : AComponent
+struct TerrainTiles
 {
 	int terrainTilesIds[20][25];
 };
 
-struct TilesInfo : AComponent
+struct TilesInfo
 {
 	const char* mapIndexToTexturePath[3];
 	int tileWidth, tileHeight;
 };
 
-struct Direction2D : AComponent
+struct Direction2D
 {
 	int x,y;
 };
 
-struct Collider2D : AComponent
+struct Collider2D
 {
 	int width, height;
 };
 
-struct DistanceTravelled : AComponent
+struct DistanceTravelled
 {
 	float horizontal, vertical;
 };
 
-struct StartingPositionX : AComponent
+struct StartingPositionX
 {
 	float value;
 };
-struct PlayerTag : AComponent{};
-struct EnemyTag : AComponent{};
-struct BulletTag : AComponent{};
+struct PlayerTag
+{};
+struct EnemyTag
+{};
+struct BulletTag
+{};
 
-struct Timer : AComponent 
+struct Timer 
 {
 	float durationInSeconds;
 	float elapsedTimeInSeconds;

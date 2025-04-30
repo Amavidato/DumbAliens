@@ -21,17 +21,18 @@ private:
 	Entity entity_;
 };
 
+template<IsAComponentStruct T>
 class AddComponentCommand : public EcsCommand
 {
 public:
-	AddComponentCommand(Entity e, AComponent c) : entity_(e), component_(c) {}
+	AddComponentCommand(Entity e, T c) : entity_(e), component_(c) {}
 	void Execute(EcsManager* ecsManager) override
 	{
 		ecsManager->AddComponent(entity_, component_);
 	}
 private:
 	Entity entity_;
-	AComponent component_;
+	T component_;
 };
 
 #endif // ECSCOMMANDS_H

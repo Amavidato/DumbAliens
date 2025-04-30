@@ -140,8 +140,8 @@ void Game::InitPlayer()
 		.width = PlayerSettings::playerWidth,
 		.height = PlayerSettings::playerHeight
 	});
-	pEcsManager_->AddComponent(*player, Speed{{},PlayerSettings::speed});
-	pEcsManager_->AddComponent(*player, Direction2D{{},0,0});
+	pEcsManager_->AddComponent(*player, Speed{PlayerSettings::speed});
+	pEcsManager_->AddComponent(*player, Direction2D{0,0});
 	pEcsManager_->AddComponent(*player,
 		RendererData{
 			.texturePath = PlayerSettings::texturePath,
@@ -168,13 +168,13 @@ void Game::InitEnemies()
 			.width = EnemySettings::enemyWidth,
 			.height = EnemySettings::enemyHeight
 		});
-		pEcsManager_->AddComponent(*enemies[i], Speed{{},EnemySettings::speed});
+		pEcsManager_->AddComponent(*enemies[i], Speed{EnemySettings::speed});
 		pEcsManager_->AddComponent(*enemies[i], RendererData{
 			.texturePath = EnemySettings::texturePath,
 			.width = EnemySettings::enemyWidth,
 			.height = EnemySettings::enemyHeight
 		});
-		pEcsManager_->AddComponent(*enemies[i], Direction2D{{},1,0});
+		pEcsManager_->AddComponent(*enemies[i], Direction2D{1,0});
 		pEcsManager_->AddComponent<EnemyTag>(*enemies[i]);
 		pEcsManager_->AddComponent(*enemies[i], DistanceTravelled{
 			.horizontal = 0,

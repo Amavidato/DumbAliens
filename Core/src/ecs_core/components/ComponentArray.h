@@ -2,7 +2,6 @@
 #ifndef COMPONENTARRAY_H
 #define COMPONENTARRAY_H
 
-#include "Component.h"
 #include "../EcsAliases.h"
 #include <cassert>
 #include <unordered_map>
@@ -20,7 +19,7 @@ public:
 };
 
 template <typename T>
-concept IsAComponentStruct = std::is_base_of_v<AComponent, T> && std::is_trivial_v<T> && std::is_standard_layout_v<T>;
+concept IsAComponentStruct = std::is_trivial_v<T> && std::is_standard_layout_v<T>;
 
 // A template for a ComponentArray. There will be one
 // instance of it for each component type.
