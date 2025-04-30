@@ -13,9 +13,9 @@
 //#include "../EcsManager.h"
 class EcsManager;
 
-// Concept to check if a type is derived from C1, C2, or C3
+// Concept to check if a type is derived from a valid SpecializedSystem
 template <typename T>
-concept DerivedFromAllowedClasses =
+concept DerivesFromSpecializedSystem =
 	std::derived_from<T, InitializationSystem>
 	|| std::derived_from<T, LogicSystem>
 	|| std::derived_from<T, RenderingSystem>;
@@ -26,7 +26,7 @@ class SystemManager
 public:
 	void UpdateSystems(float deltaTime, EcsManager* ecsManager);
 
-	template<DerivedFromAllowedClasses T>
+	template<DerivesFromSpecializedSystem T>
 	void RegisterSystem(std::shared_ptr<T> aSystem)
 	{
 		SystemID systemID = aSystem->GetID();

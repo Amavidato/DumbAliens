@@ -90,11 +90,11 @@ private:
 	// The packed array of components of type T (one for each entity)
 	std::array<T,MAX_ENTITIES> componentArray_;
 	// Map to get component array's index from entity ID
-	std::unordered_map<Entity, size_t> entityToIndexMap_;
+	std::unordered_map<Entity, int> entityToIndexMap_;
 	// Map to get entity ID from component array's index
-	std::unordered_map<size_t, Entity> indexToEntityMap_;
+	std::unordered_map<int, Entity> indexToEntityMap_;
 
 	// Total size of valid entries in the array.
-	size_t size_;
+	int size_;
 };
 #endif // COMPONENTARRAY_H

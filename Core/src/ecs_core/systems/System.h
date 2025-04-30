@@ -8,7 +8,7 @@
 
 
 class EcsManager;
-using SystemID = std::size_t;
+using SystemID = int;
 
 class ASystem
 {
