@@ -1,7 +1,7 @@
 ﻿#pragma once
 #ifndef UTILITIES_H
 #define UTILITIES_H
-#include "my_ecs_stuff/Components.h"
+#include "ecs_project_specific_stuff/Components.h"
 #include "ecs_core/EcsManager.h"
 
 namespace utils

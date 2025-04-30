@@ -2,18 +2,18 @@
 #include "SDL_ttf.h"
 
 #include "graphics/TextureManager.h"
-#include "my_ecs_stuff/BulletSystems/BulletMovementSystem.h"
-#include "my_ecs_stuff/CollisionSystem.h"
-#include "my_ecs_stuff/Components.h"
-#include "my_ecs_stuff/EnemyMovementSystem.h"
-#include "my_ecs_stuff/InputHandlerSytem.h"
-#include "my_ecs_stuff/MovementSystem.h"
-#include "my_ecs_stuff/PlayerInputSystem.h"
-#include "my_ecs_stuff/RendererSystem.h"
-#include "my_ecs_stuff/RenderingCollidersSystem.h"
-#include "my_ecs_stuff/BulletSystems/BulletCollisionSystem.h"
-#include "my_ecs_stuff/BulletSystems/BulletAutodestructionSystem.h"
-#include "my_ecs_stuff/TimerUpdateSystem.h"
+#include "ecs_project_specific_stuff/BulletSystems/BulletMovementSystem.h"
+#include "ecs_project_specific_stuff/CollisionSystem.h"
+#include "ecs_project_specific_stuff/Components.h"
+#include "ecs_project_specific_stuff/EnemyMovementSystem.h"
+#include "ecs_project_specific_stuff/InputHandlerSytem.h"
+#include "ecs_project_specific_stuff/MovementSystem.h"
+#include "ecs_project_specific_stuff/PlayerInputSystem.h"
+#include "ecs_project_specific_stuff/RendererSystem.h"
+#include "ecs_project_specific_stuff/RenderingCollidersSystem.h"
+#include "ecs_project_specific_stuff/BulletSystems/BulletCollisionSystem.h"
+#include "ecs_project_specific_stuff/BulletSystems/BulletAutodestructionSystem.h"
+#include "ecs_project_specific_stuff/TimerUpdateSystem.h"
 #include "settings/EnemySettings.h"
 #include "settings/GameSettings.h"
 #include "settings/PlayerSettings.h"
@@ -22,6 +22,7 @@
 #include <string>
 #include <format>
 #include <iostream>
+#include "ecs_project_specific_stuff/MovementSystem.h"
 
 std::unique_ptr<Entity> player;
 std::unique_ptr<Entity> enemies[EnemySettings::NumEnemies()];
