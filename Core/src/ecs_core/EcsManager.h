@@ -58,7 +58,7 @@ public:
 		return componentManager_->GetComponentType<T>();
 	}
 
-	template<DerivedFromAllowedClasses T>
+	template<DerivesFromSpecializedSystem T>
 	void RegisterSystem(std::shared_ptr<T> aSystem)
 	{
 		systemManager_->RegisterSystem(aSystem);

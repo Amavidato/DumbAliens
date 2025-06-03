@@ -6,16 +6,16 @@
 #include <bitset>
 
 //type aliases
-using Entity = std::uint32_t;
-using ComponentType = std::uint8_t;
+using Entity = int;
+using ComponentType = int;
 
 //Define the maximum number of Entities we can store
-constexpr Entity MAX_ENTITIES = 100000;
+const Entity MAX_ENTITIES = 100000;
 
 
 //Define the maximum number of Component types we can have
 //in a single Entity.
-constexpr ComponentType MAX_COMPONENTS = 32;
+const ComponentType MAX_COMPONENTS = 32;
 /*
  * Define a bitset of Components. It will be used
  * to check if an Entity has a certain Component or not

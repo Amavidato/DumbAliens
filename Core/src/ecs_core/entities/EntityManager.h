@@ -17,11 +17,11 @@ public:
 	Signature GetSignature(Entity entity);
 
 private:
-	// Queue that stores unused entity IDs
+	// Unused entity IDs
 	std::queue<Entity> availableEntities_{};
 	// Array of signatures where the index corresponds to the entity ID
 	std::array<Signature, MAX_ENTITIES> signatures_{};
-	// Total living entities - used to keep limits on how many entities can exist
-	uint32_t livingEntityCount_ {};
+	// Total living entities
+	int livingEntityCount_ {};
 };
 #endif

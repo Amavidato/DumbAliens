@@ -7,6 +7,7 @@
 #include <unordered_map>
 #include <ranges>
 #include <unordered_set>
+#include <iostream>
 
 // An abstraction is required so that the ComponentManager (seen later)
 // can tell a generic ComponentArray that an entity has been destroyed
@@ -35,10 +36,13 @@ public:
 	
 	void InsertData(Entity entity, T component)
 	{
-		assert(!entityToIndexMap_.contains(entity)
-			&& "Entity already has a component of this type");
+		if (entityToIndexMap_.contains(entity)) 
+		{
+			std::cout<<"Entity " << entity << " already has a component of type " << typeid(T).name() <<std::endl;
+			return;
+		}
 
-		size_t newIndex = size_++;
+		int newIndex = size_++;
 		entityToIndexMap_[entity] = newIndex;
 		indexToEntityMap_[newIndex] = entity;
 		componentArray_[newIndex] = component;
@@ -46,12 +50,15 @@ public:
 	
 	void RemoveData(Entity entity)
 	{
-		assert(entityToIndexMap_.contains(entity)
-			&& "Entity doesn't have a component of this type");
+		if (!entityToIndexMap_.contains(entity))
+		{
+			std::cout << "Entity " << entity << " doesn't have a component of type " << typeid(T).name() <<std::endl;
+			return;
+		}
 
 		// Copy element at end into deleted element's place to maintain density
-		size_t indexOfRemovedEntity = entityToIndexMap_[entity];
-		size_t indexOfLastElement = --size_;
+		int indexOfRemovedEntity = entityToIndexMap_[entity];
+		int indexOfLastElement = --size_;
 		componentArray_[indexOfRemovedEntity] = componentArray_[indexOfLastElement];
 
 		// Update map to point to moved spot
@@ -90,11 +97,11 @@ private:
 	// The packed array of components of type T (one for each entity)
 	std::array<T,MAX_ENTITIES> componentArray_;
 	// Map to get component array's index from entity ID
-	std::unordered_map<Entity, size_t> entityToIndexMap_;
+	std::unordered_map<Entity, int> entityToIndexMap_;
 	// Map to get entity ID from component array's index
-	std::unordered_map<size_t, Entity> indexToEntityMap_;
+	std::unordered_map<int, Entity> indexToEntityMap_;
 
 	// Total size of valid entries in the array.
-	size_t size_;
+	int size_;
 };
 #endif // COMPONENTARRAY_H
