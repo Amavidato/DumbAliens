@@ -3,7 +3,7 @@
 
 EntityManager::EntityManager()
 {
-	for(Entity entity = 0; entity < MAX_ENTITIES; ++entity)
+	for(Entity entity = 0; entity < MAX_ENTITIES; entity++)
 	{
 		availableEntities_.push(entity);
 	}
@@ -16,24 +16,22 @@ Entity EntityManager::CreateEntity()
 	// Retrieve the next available id from the available queue
 	Entity id = availableEntities_.front();
 	availableEntities_.pop();
-	++livingEntityCount_;
+	livingEntityCount_++;
 	return id;
 }
 
 void EntityManager::DestroyEntity(Entity entity)
 {
 	assert(entity < MAX_ENTITIES && "Entity out of range");
-	assert(livingEntityCount_ > 0 && "Cannot destroy the entity. There are no living entities.\n");
+	assert(livingEntityCount_ > 0 && "Cannot destroy the entity."&&" There are no living entities.\n");
+	// TODO: assert to destroy an entity that is living (is not already inside availableEntities_).
 
 	// Invalidate the destroyed entity's signature
 	signatures_[entity].reset();
 
 	// Put the destroyed entity back into the available entities queue
-	// TODO: WHAT IF THERE ARE NO CREATED ENTITIES
-	// AND THE ENTITY WE ARE PUSHING IS ALREADY
-	// INSIDE THE QUEUE?
 	availableEntities_.push(entity);
-	--livingEntityCount_;
+	livingEntityCount_--;
 }
 
 void EntityManager::SetSignature(Entity entity, Signature signature)

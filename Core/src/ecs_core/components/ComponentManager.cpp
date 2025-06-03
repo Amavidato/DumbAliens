@@ -6,8 +6,7 @@ void ComponentManager::OnEntityDestroyed(Entity entity)
 	// If it has a component for that entity, it will remove it
 	for (auto const& pair : componentArrays_)
 	{
-		auto const& component = pair.second;
-
-		component->OnEntityDestroyed(entity);
+		auto const& componentArray = pair.second;
+		componentArray->OnEntityDestroyed(entity);
 	}
 }

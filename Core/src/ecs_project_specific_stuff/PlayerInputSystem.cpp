@@ -55,6 +55,9 @@ void PlayerInputSystem::OnUpdate(float deltaTime, EcsManager* ecsManager)
 
 void PlayerInputSystem::Shoot(EcsManager* ecsManager, Entity playerEntity) const
 {
+	//TODO: move this logic inside a LogicSystem. 
+	//Here simply add a tag (e.g. PlayerShootTag) that triggers 
+	//the logic system (e.g. ShootingSystem)
 	if (!CanShoot(ecsManager, playerEntity))
 		return;
 	if (ecsManager->HasComponent<Timer>(playerEntity))

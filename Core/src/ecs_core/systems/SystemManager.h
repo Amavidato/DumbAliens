@@ -8,9 +8,6 @@
 #include <cassert>
 #include <memory>
 
-//TODO: investigate forward declaration vs include header
-// Include doesn't work. Probably there is a ciclic depencency
-//#include "../EcsManager.h"
 class EcsManager;
 
 // Concept to check if a type is derived from a valid SpecializedSystem
@@ -19,7 +16,6 @@ concept DerivesFromSpecializedSystem =
 	std::derived_from<T, InitializationSystem>
 	|| std::derived_from<T, LogicSystem>
 	|| std::derived_from<T, RenderingSystem>;
-
 	
 class SystemManager
 {
@@ -29,7 +25,6 @@ public:
 	template<DerivesFromSpecializedSystem T>
 	void RegisterSystem(std::shared_ptr<T> aSystem)
 	{
-		SystemID systemID = aSystem->GetID();
 		assert(!systemsSet_.contains(aSystem) && "Trying to add a System that is already registered");
 		systemsSet_.insert(aSystem);
 		aSystem->OnCreate();
@@ -63,13 +58,10 @@ public:
 			}
 		}
 	}
-
 	static bool STOP_SYSTEMS_EXECUTION;
 	
 private:
-	// Map from system type string pointer to a system pointer
-	//std::unordered_map<SystemID, std::shared_ptr<ASystem>> systems_{};
-
+	
 	struct Comparator
 	{
 		bool operator()(const std::shared_ptr<ASystem>& a, const std::shared_ptr<ASystem>& b) const
@@ -87,7 +79,7 @@ private:
 				|| dynamic_cast<LogicSystem*>(a.get()) && dynamic_cast<LogicSystem*>(b.get())
 				|| dynamic_cast<RenderingSystem*>(a.get()) && dynamic_cast<RenderingSystem*>(b.get()))
 			{
-				return a->GetID() < b->GetID();
+				return a->GetId() < b->GetId();
 			}
 			// For other cases, we could either consider them equal or use a different criterion.
 			return false;

@@ -52,7 +52,7 @@ public:
 	{
 		Signature result{};
 		(result.set(GetComponentType<Args>()),...);
-		return result; 
+		return result;
 	}
 
 	template <IsAComponentStruct T>
@@ -63,8 +63,7 @@ public:
 private:
 	// Map from component type to the corresponding component array
 	std::unordered_map<ComponentType, std::shared_ptr<AComponentArray>> componentArrays_{};
-	// The component type to be assigned to the next registered component
-	ComponentType nextComponentType_{};
+
 	// Convenience function to get statically casted pointer to the ComponentArray of type T
 	template <IsAComponentStruct T> 
 	std::shared_ptr<ComponentArray<T>> GetComponentArray(bool createIfNotExists = false)

@@ -50,12 +50,10 @@ struct StartingPositionX
 {
 	float value;
 };
-struct PlayerTag
-{};
-struct EnemyTag
-{};
-struct BulletTag
-{};
+
+struct PlayerTag {};
+struct EnemyTag {};
+struct BulletTag {};
 
 struct Timer 
 {
